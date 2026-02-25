@@ -14,9 +14,9 @@ class Settings(BaseSettings):
     GMAIL_CREDENTIALS_FILE: str = "credentials.json"
     GMAIL_TOKEN_FILE: str = "token.json"
 
-    FREEE_CLIENT_ID: str = ""
-    FREEE_CLIENT_SECRET: str = ""
-    FREEE_REDIRECT_URI: str = "http://localhost:8000/api/freee/callback"
+    MF_CLIENT_ID: str = ""
+    MF_CLIENT_SECRET: str = ""
+    MF_REDIRECT_URI: str = "http://localhost:8000/api/transfers/mf/callback"
 
     UPLOAD_DIR: str = os.path.join(os.path.dirname(__file__), "uploads")
 

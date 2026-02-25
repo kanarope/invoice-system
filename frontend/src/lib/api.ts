@@ -36,6 +36,7 @@ class ApiClient {
   deleteInvoice(id: number) { return this.del<{ ok: boolean }>("/api/invoices/" + id); }
   verifyHash(id: number) { return this.get<{ valid: boolean }>("/api/invoices/" + id + "/verify-hash"); }
   executeTransfer(id: number) { return this.post<{ ok: boolean }>("/api/transfers/" + id + "/execute"); }
+  getMfAuthUrl() { return this.get<{ url: string }>("/api/transfers/mf/auth-url"); }
   getDepartments() { return this.get<Department[]>("/api/departments"); }
   createDepartment(d: { name: string; code: string }) { return this.post<Department>("/api/departments", d); }
   updateDepartment(id: number, d: Partial<Department>) { return this.put<Department>("/api/departments/" + id, d); }
