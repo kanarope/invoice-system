@@ -1,3 +1,6 @@
+from __future__ import annotations
+from typing import Optional
+
 import hashlib
 import os
 import uuid
@@ -33,7 +36,7 @@ def save_upload(file_bytes: bytes, original_filename: str) -> tuple[str, str]:
     return rel_path, sha256
 
 
-def check_image_dpi(file_path: str) -> int | None:
+def check_image_dpi(file_path: str) -> Optional[int]:
     """Return DPI of image if available, else None."""
     try:
         with Image.open(file_path) as img:
@@ -45,6 +48,6 @@ def check_image_dpi(file_path: str) -> int | None:
     return None
 
 
-def calculate_retention_date(invoice_date: date | None) -> date:
+def calculate_retention_date(invoice_date: Optional[date]) -> date:
     base = invoice_date or date.today()
     return base + relativedelta(years=settings.RETENTION_YEARS)

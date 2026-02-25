@@ -1,10 +1,13 @@
 """電帳法・インボイス制度コンプライアンスチェック"""
 
+from __future__ import annotations
+from typing import Optional
+
 from schemas.compliance import ComplianceCheckResult
 from services.nta_api_service import verify_registration_number
 
 
-def check_invoice_compliance(ai_result: dict | None) -> ComplianceCheckResult:
+def check_invoice_compliance(ai_result: Optional[dict]) -> ComplianceCheckResult:
     """Check if extracted invoice data meets qualified invoice requirements."""
     if not ai_result or ai_result.get("_parse_error"):
         return ComplianceCheckResult(missing_items=["AI解析失敗"], passed=False)

@@ -1,3 +1,6 @@
+from __future__ import annotations
+from typing import Optional
+
 import base64
 import json
 import mimetypes
@@ -6,7 +9,7 @@ import re
 from openai import OpenAI
 from config import settings
 
-client: OpenAI | None = None
+client: Optional[OpenAI] = None
 
 
 def _get_client() -> OpenAI:

@@ -1,3 +1,6 @@
+from __future__ import annotations
+from typing import Optional
+
 from datetime import datetime, date
 from decimal import Decimal
 from pydantic import BaseModel
@@ -5,92 +8,92 @@ from pydantic import BaseModel
 
 class InvoiceDetailOut(BaseModel):
     id: int
-    description: str | None
-    amount: Decimal | None
-    tax: Decimal | None
-    tax_rate: str | None
+    description: Optional[str]
+    amount: Optional[Decimal]
+    tax: Optional[Decimal]
+    tax_rate: Optional[str]
 
     class Config:
         from_attributes = True
 
 
 class InvoiceDetailUpdate(BaseModel):
-    description: str | None = None
-    amount: Decimal | None = None
-    tax: Decimal | None = None
-    tax_rate: str | None = None
+    description: Optional[str] = None
+    amount: Optional[Decimal] = None
+    tax: Optional[Decimal] = None
+    tax_rate: Optional[str] = None
 
 
 class InvoiceBankAccountOut(BaseModel):
     id: int
-    bank_name: str | None
-    branch_name: str | None
-    account_type: str | None
-    account_number: str | None
-    account_holder: str | None
+    bank_name: Optional[str]
+    branch_name: Optional[str]
+    account_type: Optional[str]
+    account_number: Optional[str]
+    account_holder: Optional[str]
 
     class Config:
         from_attributes = True
 
 
 class BankAccountUpdate(BaseModel):
-    bank_name: str | None = None
-    branch_name: str | None = None
-    account_type: str | None = None
-    account_number: str | None = None
-    account_holder: str | None = None
+    bank_name: Optional[str] = None
+    branch_name: Optional[str] = None
+    account_type: Optional[str] = None
+    account_number: Optional[str] = None
+    account_holder: Optional[str] = None
 
 
 class InvoiceUpdate(BaseModel):
-    invoice_number: str | None = None
-    vendor_id: int | None = None
-    department_id: int | None = None
-    invoice_date: date | None = None
-    due_date: date | None = None
-    total_amount: Decimal | None = None
-    tax_amount: Decimal | None = None
-    tax_8_amount: Decimal | None = None
-    tax_10_amount: Decimal | None = None
-    subtotal_amount: Decimal | None = None
-    invoice_registration_number: str | None = None
-    description: str | None = None
-    recipient_name: str | None = None
-    bank_account: BankAccountUpdate | None = None
-    details: list[InvoiceDetailUpdate] | None = None
+    invoice_number: Optional[str] = None
+    vendor_id: Optional[int] = None
+    department_id: Optional[int] = None
+    invoice_date: Optional[date] = None
+    due_date: Optional[date] = None
+    total_amount: Optional[Decimal] = None
+    tax_amount: Optional[Decimal] = None
+    tax_8_amount: Optional[Decimal] = None
+    tax_10_amount: Optional[Decimal] = None
+    subtotal_amount: Optional[Decimal] = None
+    invoice_registration_number: Optional[str] = None
+    description: Optional[str] = None
+    recipient_name: Optional[str] = None
+    bank_account: Optional[BankAccountUpdate] = None
+    details: Optional[list[InvoiceDetailUpdate]] = None
 
 
 class InvoiceOut(BaseModel):
     id: int
-    invoice_number: str | None
-    vendor_id: int | None
-    department_id: int | None
+    invoice_number: Optional[str]
+    vendor_id: Optional[int]
+    department_id: Optional[int]
     status: str
-    invoice_date: date | None
-    due_date: date | None
-    total_amount: Decimal | None
-    tax_amount: Decimal | None
-    tax_8_amount: Decimal | None
-    tax_10_amount: Decimal | None
-    subtotal_amount: Decimal | None
-    file_path: str | None
-    file_hash_sha256: str | None
-    original_filename: str | None
+    invoice_date: Optional[date]
+    due_date: Optional[date]
+    total_amount: Optional[Decimal]
+    tax_amount: Optional[Decimal]
+    tax_8_amount: Optional[Decimal]
+    tax_10_amount: Optional[Decimal]
+    subtotal_amount: Optional[Decimal]
+    file_path: Optional[str]
+    file_hash_sha256: Optional[str]
+    original_filename: Optional[str]
     source_type: str
-    invoice_registration_number: str | None
-    invoice_registration_status: str | None
-    ai_raw_result: dict | None
-    compliance_check_result: dict | None
+    invoice_registration_number: Optional[str]
+    invoice_registration_status: Optional[str]
+    ai_raw_result: Optional[dict]
+    compliance_check_result: Optional[dict]
     is_deleted: bool
-    retention_until: date | None
-    description: str | None
-    recipient_name: str | None
+    retention_until: Optional[date]
+    description: Optional[str]
+    recipient_name: Optional[str]
     created_at: datetime
     updated_at: datetime
-    approved_at: datetime | None
+    approved_at: Optional[datetime]
     details: list[InvoiceDetailOut] = []
-    bank_account: InvoiceBankAccountOut | None = None
-    vendor_name: str | None = None
-    department_name: str | None = None
+    bank_account: Optional[InvoiceBankAccountOut] = None
+    vendor_name: Optional[str] = None
+    department_name: Optional[str] = None
 
     class Config:
         from_attributes = True

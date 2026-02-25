@@ -1,3 +1,6 @@
+from __future__ import annotations
+from typing import Optional
+
 from fastapi import APIRouter, Depends, Query
 from sqlalchemy.orm import Session
 
@@ -10,8 +13,8 @@ router = APIRouter(prefix="/api/audit", tags=["audit"])
 
 @router.get("")
 def list_audit_logs(
-    entity_type: str | None = None,
-    entity_id: int | None = None,
+    entity_type: Optional[str] = None,
+    entity_id: Optional[int] = None,
     limit: int = Query(100, ge=1, le=500),
     offset: int = Query(0, ge=0),
     db: Session = Depends(get_db),

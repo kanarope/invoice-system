@@ -1,3 +1,6 @@
+from __future__ import annotations
+from typing import Optional
+
 from sqlalchemy.orm import Session
 from models.audit_log import AuditLog
 
@@ -5,13 +8,13 @@ from models.audit_log import AuditLog
 def log_action(
     db: Session,
     *,
-    user_id: int | None,
+    user_id: Optional[int],
     entity_type: str,
     entity_id: int,
     action: str,
-    old_values: dict | None = None,
-    new_values: dict | None = None,
-    ip_address: str | None = None,
+    old_values: Optional[dict] = None,
+    new_values: Optional[dict] = None,
+    ip_address: Optional[str] = None,
 ):
     entry = AuditLog(
         user_id=user_id,
@@ -29,8 +32,8 @@ def log_action(
 
 def get_audit_logs(
     db: Session,
-    entity_type: str | None = None,
-    entity_id: int | None = None,
+    entity_type: Optional[str] = None,
+    entity_id: Optional[int] = None,
     limit: int = 100,
     offset: int = 0,
 ):

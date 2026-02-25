@@ -10,7 +10,7 @@ export default function DepartmentsPage() {
   const [name, setName] = useState("");
   const [code, setCode] = useState("");
   const load = () => api.getDepartments().then(setDepts).catch(() => {});
-  useEffect(load, []);
+  useEffect(() => { load(); }, []);
 
   const create = async () => {
     if (!name || !code) return;

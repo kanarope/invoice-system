@@ -1,3 +1,6 @@
+from __future__ import annotations
+from typing import Optional
+
 from datetime import datetime
 from pydantic import BaseModel
 
@@ -8,9 +11,9 @@ class DepartmentCreate(BaseModel):
 
 
 class DepartmentUpdate(BaseModel):
-    name: str | None = None
-    code: str | None = None
-    is_active: bool | None = None
+    name: Optional[str] = None
+    code: Optional[str] = None
+    is_active: Optional[bool] = None
 
 
 class DepartmentOut(BaseModel):

@@ -1,5 +1,8 @@
 """マネーフォワード クラウド請求書 API連携 -- 振込設定・取引登録"""
 
+from __future__ import annotations
+from typing import Optional
+
 import httpx
 from config import settings
 
@@ -100,7 +103,7 @@ def create_billing(
     amount: int,
     partner_name: str,
     description: str = "",
-    items: list[dict] | None = None,
+    items: Optional[list[dict]] = None,
 ) -> dict:
     """マネーフォワードに請求データ（支払い）を登録"""
     if not _token_store.get("access_token"):

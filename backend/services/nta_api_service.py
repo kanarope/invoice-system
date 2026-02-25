@@ -1,5 +1,7 @@
 """国税庁 適格請求書発行事業者公表API連携"""
 
+from __future__ import annotations
+
 import httpx
 from config import settings
 from schemas.compliance import NTAVerificationResult

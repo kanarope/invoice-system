@@ -1,3 +1,6 @@
+from __future__ import annotations
+from typing import Optional
+
 import os
 from datetime import date
 from decimal import Decimal
@@ -144,13 +147,13 @@ async def upload_invoices(
 def list_invoices(
     page: int = Query(1, ge=1),
     per_page: int = Query(20, ge=1, le=100),
-    status: str | None = None,
-    department_id: int | None = None,
-    vendor_name: str | None = None,
-    date_from: date | None = None,
-    date_to: date | None = None,
-    amount_min: int | None = None,
-    amount_max: int | None = None,
+    status: Optional[str] = None,
+    department_id: Optional[int] = None,
+    vendor_name: Optional[str] = None,
+    date_from: Optional[date] = None,
+    date_to: Optional[date] = None,
+    amount_min: Optional[int] = None,
+    amount_max: Optional[int] = None,
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user),
 ):
@@ -348,7 +351,7 @@ def verify_invoice_hash(invoice_id: int, db: Session = Depends(get_db), _=Depend
     return {"valid": is_valid, "expected": inv.file_hash_sha256}
 
 
-def _parse_date(value) -> date | None:
+def _parse_date(value) -> Optional[date]:
     if not value:
         return None
     try:
@@ -357,7 +360,7 @@ def _parse_date(value) -> date | None:
         return None
 
 
-def _to_decimal(value) -> Decimal | None:
+def _to_decimal(value) -> Optional[Decimal]:
     if value is None:
         return None
     try:

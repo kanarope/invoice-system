@@ -1,11 +1,14 @@
 """事業部自動分類"""
 
+from __future__ import annotations
+from typing import Optional
+
 from sqlalchemy.orm import Session
 from models.vendor import Vendor
 from models.invoice import Invoice
 
 
-def classify_department(db: Session, vendor_name: str | None, description: str | None = None) -> int | None:
+def classify_department(db: Session, vendor_name: Optional[str], description: Optional[str] = None) -> Optional[int]:
     """Attempt to auto-classify department based on vendor history."""
     if not vendor_name:
         return None
